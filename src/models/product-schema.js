@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const { likeSchema } = require('./like-schema');
 const { commentSchema } = require('./comment-schema');
 const productSchema = new mongoose.Schema({
   image: {
@@ -18,9 +19,7 @@ const productSchema = new mongoose.Schema({
   price: {
     type: Number,
   },
-  likes: {
-    type: Number,
-  },
+  likes:[likeSchema],
   comments: [commentSchema],
   ownerEmail: {
     type: String,

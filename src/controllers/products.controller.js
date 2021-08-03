@@ -32,10 +32,10 @@ const addingProductsLikeAndcomment = async (req, res, next) => {
     let deletelike = [];
     User.find({ _id: userId }, (error, data) => {
       // to add or delete like to the products
-      data[0].products.map((info) => {
-        if (like) {
+      if (like) {
+        data[0].products.map((info) => {
+          peoductCount++;
           if (info._id == like.productId) {
-            peoductCount++;
             info.likes.map((likeInfo) => {
               count++;
               if (like.likerId === likeInfo.likerId) {
@@ -48,13 +48,14 @@ const addingProductsLikeAndcomment = async (req, res, next) => {
               }
             });
           }
+        
+        });
+        peoductIdx = peoductCount - 1;
+        if (deletelike.includes('true')) {
+          data[0].products[peoductIdx].likes.splice([idx], 1);
+        } else {
+          data[0].products[peoductIdx].likes.push(req.body.like);
         }
-      });
-      peoductIdx = peoductCount - 1;
-      if (deletelike.includes('true')) {
-        data[0].products[peoductIdx].likes.splice([idx], 1);
-      } else {
-        data[0].products[peoductIdx].likes.push(req.body.like);
       }
 
       // to add comment to the products
@@ -120,7 +121,7 @@ const editProductsComment = async (req, res) => {
     // to update the user comment
     User.find({ _id: id }, (error, data) => {
       data[0].products.map((info) => {
-        if (info._id == req.body.productId) {
+        if (info._id !== req.body.productId) {
           info.comments.map((commentData) => {
             if (
               commentData.commenterId == req.body.comment.commenterId &&
@@ -129,7 +130,7 @@ const editProductsComment = async (req, res) => {
               console.log(commentData[0]);
               commentData.text = req.body.comment.text;
               data[0].save();
-              res.json(data[0]);
+              return res.json(data[0]);
             }
           });
         }
@@ -164,7 +165,7 @@ const deleteProductsComment = async (req, res) => {
     // to delete the user comment
     User.find({ _id: id }, (error, data) => {
       data[0].products.map((info) => {
-        if (info._id == req.body.productId) {
+        if (info._id !== req.body.productId) {
           count = 0;
           info.comments.map((commentData) => {
             count++;

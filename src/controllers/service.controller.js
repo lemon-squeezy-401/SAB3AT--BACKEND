@@ -34,8 +34,8 @@ const addingLikeAndcomment = async (req, res, next) => {
       // to add or delete like to the services
       if (like) {
         data[0].services.map((info) => {
+          serviceCount++;
           if (info._id == like.serivceId) {
-            serviceCount++;
             info.likes.map((likeInfo) => {
               count++;
               if (like.likerId === likeInfo.likerId) {
@@ -87,7 +87,7 @@ const getServices = async (req, res) => {
         lastName: info.lastName,
         email: info.email,
         services: info.services,
-        products: info.products,
+        // products: info.products,
       };
       dataArray.push(newuser);
     });
@@ -119,7 +119,7 @@ const editComment = async (req, res) => {
     // to update the user comment
     User.find({ _id: id }, (error, data) => {
       data[0].services.map((info) => {
-        if (info._id == req.body.serivceId) {
+        if (info._id !== req.body.serivceId) {
           info.comments.map((commentData) => {
             if (
               commentData.commenterId == req.body.comment.commenterId &&
@@ -127,9 +127,11 @@ const editComment = async (req, res) => {
             ) {
               commentData.text = req.body.comment.text;
               data[0].save();
-              res.json(data[0]);
+              return res.json(data[0]);
             }
           });
+        } else {
+          res.send('service not found');
         }
       });
     });
@@ -162,7 +164,7 @@ const deleteComment = async (req, res) => {
     // to delete the user comment
     User.find({ _id: id }, (error, data) => {
       data[0].services.map((info) => {
-        if (info._id == req.body.serivceId) {
+        if (info._id !== req.body.serivceId) {
           count = 0;
           info.comments.map((commentData) => {
             count++;
