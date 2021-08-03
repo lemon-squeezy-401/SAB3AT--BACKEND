@@ -45,6 +45,8 @@ app.use(productRoutes);
 app.use(serviceRoutes);
 app.use(profileRoutes);
 
+const PORT = process.env.PORT;
+
 // app.get('/', (req, res) => {
 //   res.send('SAB3AT');
 // });
@@ -109,7 +111,7 @@ io.on('connection', (socket) => {
     socket.emit('redirect', url);
 
     try {
-      User.find({ _id: payload.sallerId }, (data) => {
+      User.find({ _id: payload.sallerId }, (error, data) => {
         data[0].unConfermedReq.push(payload);
         data[0].save();
       });
@@ -224,8 +226,8 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: 'http://localhost:3000/payment/success.html',
-    cancel_url: 'http://localhost:3000/payment/cancel.html',
+    success_url: `http://localhost:${PORT}/payment/success.html`,
+    cancel_url: `http://localhost:${PORT}/payment/cancel.html`,
   });
 
   res.redirect(303, session.url);
@@ -233,7 +235,6 @@ app.post('/create-checkout-session', async (req, res) => {
 app.use('/payment',express.static(path.join(__dirname, './payments')));
 //============================payment======================================//
 
-const PORT = process.env.PORT;
 
 app.use('*', notFoundHandler);
 app.use(errorHandler);
@@ -242,7 +243,7 @@ const start = () => {
   if (!PORT) {
     throw new Error('Missing Port');
   }
-  server.listen(PORT || 8000, () => console.log(`Listening on ${PORT}`));
+  server.listen(PORT || 3000, () => console.log(`Listening on ${PORT}`));
 };
 
 module.exports = {

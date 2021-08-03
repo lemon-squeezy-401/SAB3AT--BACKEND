@@ -6,7 +6,7 @@ const panelRoutes = express.Router();
 // const bearerAuth = require('../auth/middleware/bearer');
 const controlpanel=require('../controllers/controlPanel.controller');
 
-panelRoutes.get('/controlpanel', controlpanel.getUsers);
+panelRoutes.get('/controlpanel/:id', controlpanel.getUsers);
 
 panelRoutes.post('/controlpanel/:id', controlpanel.addAcount);
 

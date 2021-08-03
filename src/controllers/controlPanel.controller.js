@@ -38,13 +38,17 @@ const addAcount = (req, res, next) => {
 ///////////////////to get all  users information /////////////////////////////////////////
 const getUsers = async (req, res) => {
   const adminId = req.params.id;
-  User.find({_id: adminId}, (error, data) => {
-    if (data.role === 'admin') {
+  User.find({ _id: adminId} , (error, adminData) => {
+    if(adminData[0].role === 'admin') {
       try {
-        res.json(data);
+        User.find({}, (error, data) => {
+          res.json(data);
+        });
       } catch (error) {
         console.error(error);
       }
+    } else {
+      res.send('NOT Autherized');
     }
   });
 };
@@ -59,7 +63,7 @@ const getUsers = async (req, res) => {
 //     role: 'user' or 'editor'or 'admin'
 //     services: [],
 //     products: []
-//   }
+// }
 
 const editUserInfo = async (req, res) => {
   const id = req.body.userId;
