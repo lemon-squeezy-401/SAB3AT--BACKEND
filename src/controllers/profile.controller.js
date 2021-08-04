@@ -33,7 +33,7 @@ const profileAdding = async (req, res, next) => {
     const createdData = req.body;
     // const ownerEmail = req.body.email;
     User.find({ _id: id }, (error, data) => {
-      console.log(data[0]);
+      // console.log(data[0]);
       data[0].services.push(createdData);
       data[0].save();
       res.json(data[0].services);
@@ -49,7 +49,7 @@ const addProdutcToUser = async (req, res, next) => {
     const createdData = req.body;
     // const ownerEmail = req.body.email;
     User.find({ _id: id }, (error, data) => {
-      console.log(data[0]);
+      // console.log(data[0]);
       data[0].products.push(createdData);
       data[0].save();
       res.json(data[0].products);
@@ -65,7 +65,7 @@ const getProfileInfo = async (req, res) => {
   const id = req.params.id;
   User.find({ _id: id }, (error, data) => {
     res.json(data[0]);
-    console.log(data[0]);
+    // console.log(data[0]);
   });
 };
 
@@ -83,15 +83,21 @@ const editProfileInfo = async (req, res) => {
     User.find({ _id: id }, (error, data) => {
       ServiceArray = data[0].services;
       data[0].services.map((info) => {
+        count++;
         if (info._id !== req.body._id) {
-          count++;
           idStatus = 'False';
         }
         if (info._id == req.body._id) {
           let idx = count - 1;
           idStatus = 'True';
+          // console.log('befooor', ServiceArray[idx]);
           ServiceArray[idx] = req.body;
+
           data[0].services = ServiceArray;
+          data[0].save();
+          res.json(data[0]);
+
+          // console.log('aftttttter', data[0]);
         }
       });
       // to update the user products
@@ -108,19 +114,21 @@ const editProfileInfo = async (req, res) => {
             idStatus = 'True';
             productArray[idx] = req.body;
             data[0].products = productArray;
+            data[0].save();
+            res.json(data[0]);
           }
         });
       }
 
       // to send the request to the frontend
-      if (idStatus == 'True') {
-        data[0].save();
-        idStatus = 0;
-        res.json(data[0]);
-      }
-      if (idStatus == 'False') {
-        res.json('you can not update this service / product - not found');
-      }
+      // if (idStatus == "True") {
+      //   data[0].save();
+      //   idStatus = 0;
+      //   res.json(data[0]);
+      // }
+      // if (idStatus == "False") {
+      //   res.json("you can not update this service / product - not found");
+      // }
     });
   } catch (error) {
     res.json('user not found');

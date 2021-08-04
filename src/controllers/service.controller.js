@@ -36,8 +36,11 @@ const addingLikeAndcomment = async (req, res, next) => {
         data[0].services.map((info) => {
           serviceCount++;
           if (info._id == like.serivceId) {
+            // console.log(info);
+            // console.log(serviceCount);
             info.likes.map((likeInfo) => {
               count++;
+              // console.log('count',count);
               if (like.likerId === likeInfo.likerId) {
                 idx = count - 1;
                 deletelike.push('true');
@@ -47,15 +50,15 @@ const addingLikeAndcomment = async (req, res, next) => {
                 deletelike.push('false');
               }
             });
+            serviceIdx = serviceCount - 1;
+            if (deletelike.includes('true')) {
+              data[0].services[serviceIdx].likes.splice([idx], 1);
+            } else {
+              data[0].services[serviceIdx].likes.push(req.body.like);
+            }
           }
         });
 
-        serviceIdx = serviceCount - 1;
-        if (deletelike.includes('true')) {
-          data[0].services[serviceIdx].likes.splice([idx], 1);
-        } else {
-          data[0].services[serviceIdx].likes.push(req.body.like);
-        }
       }
 
       // to add comment to the services

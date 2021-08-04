@@ -127,7 +127,7 @@ const editProductsComment = async (req, res) => {
               commentData.commenterId == req.body.comment.commenterId &&
               commentData._id == req.body.comment._id
             ) {
-              console.log(commentData[0]);
+              // console.log(commentData[0]);
               commentData.text = req.body.comment.text;
               data[0].save();
               return res.json(data[0]);

@@ -63,7 +63,6 @@ io.on('connection', (socket) => {
 
   socket.on('joinRoom', ({ username, room }) => {
     const user = userJoin(socket.id, username, room);
-    console.log('user connected');
 
     socket.join(user.room);
 
@@ -96,7 +95,7 @@ io.on('connection', (socket) => {
 
   socket.on('join', (payload) => {
     // socket.join will put the socket in a private room
-    console.log('-------join----------');
+    // console.log('-------join----------');
     socket.join(staffRoom);
     socket
       .to(staffRoom)
@@ -105,8 +104,8 @@ io.on('connection', (socket) => {
 
   socket.on('createTicket', (payload) => {
     // 2
-    console.log('-------cerateticket----------');
-    console.log(payload);
+    // console.log('-------cerateticket----------');
+    // console.log(payload);
     let url = 'http://localhost:8000/payment/';
     socket.emit('redirect', url);
 
@@ -128,7 +127,7 @@ io.on('connection', (socket) => {
 
   socket.on('claim', (payload) => {
     // when a TA claim the ticket we need to notify the student
-    console.log('-------claim tecket----------');
+    // console.log('-------claim tecket----------');
     let count = 0;
     let idx;
     User.find({ _id: payload.sallerId }, (error, data) => {
@@ -148,7 +147,7 @@ io.on('connection', (socket) => {
 
   socket.on('reject', (payload) => {
     // when a TA claim the ticket we need to notify the student
-    console.log('-------reject tecket----------');
+    // console.log('-------reject tecket----------');
 
     let count = 0;
     let idx;
