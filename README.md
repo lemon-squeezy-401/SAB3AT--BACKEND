@@ -24,7 +24,7 @@
 | POST       | /signup |
 | POST       | /signin |
 | GET        | /users  |
-|
+
 
 
 
@@ -34,7 +34,7 @@
 | POST                     | /controlpanel/:id |
 | UPDATE                   | /controlpanel/:id |
 | DELETE                   | /controlpanel/:id |
-|
+
 
 
 
@@ -45,7 +45,7 @@
 | GET           | /profile/:id         |
 | UPDATE        | /profile/:id         |
 | DELETE        | /profile/:id         |
-|
+
 
 
 
@@ -55,7 +55,7 @@
 | POST           | /service     |
 | UPDATE         | /service/:id |
 | DELETE         | /service/:id |
-|
+
 
 
 
