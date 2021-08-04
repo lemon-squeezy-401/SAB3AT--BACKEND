@@ -17,6 +17,59 @@
 
 ---
 
+### EndPoints
+
+| Auth Route ||
+| ---------- |-------- |
+| POST       | /signup |
+| POST       | /signin |
+| GET        | /users  |
+|
+
+
+
+| Admin Controlpanel Route ||
+| ------------------------ | ----------------- |
+| GET                      | /controlpanel/:id |
+| POST                     | /controlpanel/:id |
+| UPDATE                   | /controlpanel/:id |
+| DELETE                   | /controlpanel/:id |
+|
+
+
+
+| Profile Route ||
+| ------------- | -------------------- |
+| POST          | /profile-service/:id |
+| POST          | /profile-product/:id |
+| GET           | /profile/:id         |
+| UPDATE        | /profile/:id         |
+| DELETE        | /profile/:id         |
+|
+
+
+
+| Service Router ||
+| -------------- | ------------ |
+| GET            | /service     |
+| POST           | /service     |
+| UPDATE         | /service/:id |
+| DELETE         | /service/:id |
+|
+
+
+
+| Producte Route ||
+| -------------- | ------------- |
+| GET            | /products     |
+| GET            | /products/:id |
+| POST           | /products     |
+| UPDATE         | /products/:id |
+| DELETE         | /products/:id |
+|
+
+---
+
 ### Communication Plan
 
 ---
