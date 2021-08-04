@@ -66,7 +66,7 @@
 | POST           | /products     |
 | UPDATE         | /products/:id |
 | DELETE         | /products/:id |
-|
+
 
 ---
 
