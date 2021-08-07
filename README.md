@@ -118,8 +118,4 @@
 
 &nbsp;
 
----
 
-### Links and Resources
-
----
