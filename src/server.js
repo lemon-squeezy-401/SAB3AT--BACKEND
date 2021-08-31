@@ -106,7 +106,7 @@ io.on('connection', (socket) => {
     // 2
     // console.log('-------cerateticket----------');
     // console.log(payload);
-    let url = 'http://localhost:8000/payment/';
+    let url = `http://localhost:${PORT}/payment/`;
     socket.emit('redirect', url);
 
     try {
@@ -242,7 +242,7 @@ const start = () => {
   if (!PORT) {
     throw new Error('Missing Port');
   }
-  server.listen(PORT || 3000, () => console.log(`Listening on ${PORT}`));
+  server.listen(PORT || 3001, () => console.log(`Listening on ${PORT}`));
 };
 
 module.exports = {
