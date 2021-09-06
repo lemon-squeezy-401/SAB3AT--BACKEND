@@ -11,8 +11,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    // origin: '*',
-    origin: 'http://localhost:3000',
+    origin: '*',
+    // origin: 'http://localhost:3000',
   },
 });
 
@@ -74,7 +74,7 @@ io.on('connection', (socket) => {
       .to(user.room)
       .emit(
         'message',
-        formatMessage(botName, `${user.username} has joined the chat`),
+        formatMessage(botName, `${user.username} has joined the chat`)
       );
 
     // Send users and room info
@@ -175,7 +175,7 @@ io.on('connection', (socket) => {
     if (user) {
       io.to(user.room).emit(
         'message',
-        formatMessage(botName, `${user.username} has left the chat`),
+        formatMessage(botName, `${user.username} has left the chat`)
       );
 
       // Send users and room info
@@ -231,9 +231,8 @@ app.post('/create-checkout-session', async (req, res) => {
 
   res.redirect(303, session.url);
 });
-app.use('/payment',express.static(path.join(__dirname, './payments')));
+app.use('/payment', express.static(path.join(__dirname, './payments')));
 //============================payment======================================//
-
 
 app.use('*', notFoundHandler);
 app.use(errorHandler);
