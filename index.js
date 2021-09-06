@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-require('dotenv').config();
+require("dotenv").config();
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const options = {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -10,4 +10,11 @@ const options = {
 };
 mongoose.connect(`${process.env.MONGODB_URI}`, options);
 
-require('./src/server.js').start(process.env.PORT);
+mongoose.connection.on("connected", () => {
+  console.log("mongodb is connected =P");
+});
+mongoose.connection.on("error", (err) => {
+  console.log(`mongodb is NOOOOOOOT connected , ${err}`);
+});
+
+require("./src/server.js").start(process.env.PORT);
