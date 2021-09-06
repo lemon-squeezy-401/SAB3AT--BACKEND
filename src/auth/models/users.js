@@ -39,6 +39,10 @@ const users = new mongoose.Schema(
 users.virtual('token').get(function () {
   let tokenObject = {
     email: this.email,
+    id: this.id,
+    fisrtName: this.firstName,
+    lastName: this.lastName,
+    capabilities: this.capabilities,
   };
   return jwt.sign(tokenObject, secret);
 });
