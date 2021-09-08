@@ -1,55 +1,10 @@
 <html>
   <head>
-    <title>SAB3AT</title>
-    <style>
-     
-     
-      .button {
-        border-radius: 4px;
-        background-color: #1e94f4;
-        border: none;
-        color: #ffffff;
-        text-align: center;
-        font-size: 28px;
-        padding: 20px;
-        width: 400px;
-        transition: all 0.5s;
-        cursor: pointer;
-        margin: 5px;
-        height: 100px;
-        margin: 17% 34%;
-      }
-
-      .button span {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
-      }
-
-      .button span:after {
-        content: '\00bb';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-      }
-
-      .button:hover span {
-        padding-right: 25px;
-      }
-
-      .button:hover span:after {
-        opacity: 1;
-        right: 0;
-      }
-    </style>
+    <title>Buy cool new product</title>
   </head>
   <body>
-  
     <form action="/create-checkout-session" method="POST">
-      <button class="button" type="submit"><span> SAFE CHECKOUT </span></button>
+      <button type="submit">Checkout</button>
     </form>
   </body>
 </html>

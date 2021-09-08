@@ -26,7 +26,7 @@ const users = new mongoose.Schema(
   },
   {
     toJSON: { virtuals: true },
-  }
+  },
 );
 // }, { toObject: { getters: true } }); // What would this do if we use this instead of just });
 

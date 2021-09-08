@@ -38,8 +38,8 @@ const addAcount = (req, res, next) => {
 ///////////////////to get all  users information /////////////////////////////////////////
 const getUsers = async (req, res) => {
   const adminId = req.params.id;
-  User.find({ _id: adminId }, (error, adminData) => {
-    if (adminData[0].role === 'admin') {
+  User.find({ _id: adminId} , (error, adminData) => {
+    if(adminData[0].role === 'admin') {
       try {
         User.find({}, (error, data) => {
           res.json(data);
@@ -69,8 +69,8 @@ const editUserInfo = async (req, res) => {
   const id = req.body.userId;
   const info = req.body;
   const adminId = req.params.id;
-  User.find({ _id: adminId }, (error, adminData) => {
-    if (adminData[0].role === 'admin') {
+  User.find({ _id: adminId} , (error, adminData) => {
+    if(adminData[0].role === 'admin') {
       try {
         // to update the user comment
         User.find({ _id: id }, (error, data) => {
@@ -99,8 +99,8 @@ const editUserInfo = async (req, res) => {
 const deleteUser = async (req, res) => {
   const _id = req.body.userId;
   const adminId = req.params.id;
-  User.find({ _id: adminId }, (error, adminData) => {
-    if (adminData[0].role === 'admin') {
+  User.find({ _id: adminId} , (error, adminData) => {
+    if(adminData[0].role === 'admin') {
       try {
         User.findByIdAndDelete(_id, (error, data) => {
           res.send(data);
