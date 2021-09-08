@@ -207,8 +207,10 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 app.post('/create-checkout-session', async (req, res) => {
   req.body = {
-    name: 'service',
-    price: 5000,
+    name: 'كهربجي',
+    description: 'تمديدات كهرباء وصلات , لاللاعطال الكهربائية بعد اليوم',
+    // image: 'https://pbs.twimg.com/profile_images/1069801443601891329/-axVlAKz_400x400.jpg',
+    price: 1000,
   };
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
@@ -218,6 +220,8 @@ app.post('/create-checkout-session', async (req, res) => {
           currency: 'usd',
           product_data: {
             name: req.body.name,
+            description: req.body.description,
+            // images: req.body.image,
           },
           unit_amount: req.body.price,
         },
