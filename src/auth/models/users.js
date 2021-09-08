@@ -43,6 +43,7 @@ users.virtual('token').get(function () {
     fisrtName: this.firstName,
     lastName: this.lastName,
     capabilities: this.capabilities,
+    role:this.role
   };
   return jwt.sign(tokenObject, secret);
 });
