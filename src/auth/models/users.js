@@ -26,7 +26,7 @@ const users = new mongoose.Schema(
   },
   {
     toJSON: { virtuals: true },
-  },
+  }
 );
 // }, { toObject: { getters: true } }); // What would this do if we use this instead of just });
 
@@ -43,7 +43,6 @@ users.virtual('token').get(function () {
     fisrtName: this.firstName,
     lastName: this.lastName,
     capabilities: this.capabilities,
-    role:this.role
   };
   return jwt.sign(tokenObject, secret);
 });
