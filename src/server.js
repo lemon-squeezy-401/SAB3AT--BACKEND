@@ -229,8 +229,8 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: `http://localhost:${PORT}/payment/success.html`,
-    cancel_url: `http://localhost:${PORT}/payment/cancel.html`,
+    success_url: `https://sab3at.herokuapp.com/payment/success.html`,
+    cancel_url: `https://sab3at.herokuapp.com/payment/cancel.html`,
   });
 
   res.redirect(303, session.url);
