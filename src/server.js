@@ -11,8 +11,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    // origin: '*',
-    origin: 'http://localhost:3000',
+    origin: '*',
+    // origin: 'http://localhost:3000',
   },
 });
 
@@ -38,7 +38,8 @@ const errorHandler = require('./error-handlers/500');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: '*',
+  credentials: true,
 }));
 app.use(morgan('dev'));
 app.use(authRoutes);
