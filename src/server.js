@@ -40,6 +40,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   origin: '*',
   credentials: true,
+  exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
+  // Access-Control-Allow-Credentials: true,
 }));
 app.use(morgan('dev'));
 app.use(authRoutes);
