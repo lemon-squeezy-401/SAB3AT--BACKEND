@@ -8,13 +8,11 @@ const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
 const app = express();
-app.use(cors());
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
     origin: '*',
     // origin: 'http://localhost:3000',
-    // origin: 'http://localhost:3001',
   },
 });
 
@@ -39,6 +37,7 @@ const notFoundHandler = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use(morgan('dev'));
 app.use(authRoutes);
 app.use(panelRoutes);
@@ -232,8 +231,9 @@ app.post('/create-checkout-session', async (req, res) => {
 
   res.redirect(303, session.url);
 });
-app.use('/payment', express.static(path.join(__dirname, './payments')));
+app.use('/payment',express.static(path.join(__dirname, './payments')));
 //============================payment======================================//
+
 
 app.use('*', notFoundHandler);
 app.use(errorHandler);
