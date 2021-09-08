@@ -11,9 +11,9 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    // origin: '*',
-    origin: 'http://localhost:3000',
-    origin: 'http://localhost:3001',
+    origin: '*',
+    // origin: 'http://localhost:3000',
+    // origin: 'http://localhost:3001',
   },
 });
 
@@ -75,7 +75,7 @@ io.on('connection', (socket) => {
       .to(user.room)
       .emit(
         'message',
-        formatMessage(botName, `${user.username} has joined the chat`)
+        formatMessage(botName, `${user.username} has joined the chat`),
       );
 
     // Send users and room info
@@ -176,7 +176,7 @@ io.on('connection', (socket) => {
     if (user) {
       io.to(user.room).emit(
         'message',
-        formatMessage(botName, `${user.username} has left the chat`)
+        formatMessage(botName, `${user.username} has left the chat`),
       );
 
       // Send users and room info
