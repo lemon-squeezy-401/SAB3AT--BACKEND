@@ -37,12 +37,7 @@ const notFoundHandler = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: '*',
-  credentials: true,
-  exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
-  // Access-Control-Allow-Credentials: true,
-}));
+app.use(cors());
 app.use(morgan('dev'));
 app.use(authRoutes);
 app.use(panelRoutes);
