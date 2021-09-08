@@ -8,6 +8,7 @@ const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
 const app = express();
+app.use(cors());
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
@@ -38,7 +39,6 @@ const notFoundHandler = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 app.use(morgan('dev'));
 app.use(authRoutes);
 app.use(panelRoutes);
