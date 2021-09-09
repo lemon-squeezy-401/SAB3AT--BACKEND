@@ -207,10 +207,10 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 app.post('/create-checkout-session', async (req, res) => {
   req.body = {
-    name: 'كهربجي',
-    description: 'تمديدات كهرباء وصلات , لاللاعطال الكهربائية بعد اليوم',
+    name: 'MacBook',
+    description: 'Apple macbook M1 chip 16 GB Ram 256 GB SSD',
     // image: 'https://pbs.twimg.com/profile_images/1069801443601891329/-axVlAKz_400x400.jpg',
-    price: 1000,
+    price: 125600,
   };
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
